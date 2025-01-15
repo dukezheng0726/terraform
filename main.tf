@@ -14,10 +14,10 @@ provider "aws" {
 }
 
 resource "aws_instance" "app_server" {
-  ami           = var.ami
-  instance_type = var.instance_type
+  ami                    = var.ami
+  instance_type          = var.instance_type
   vpc_security_group_ids = [var.vpc_security_group_id]
-  subnet_id = var.subnet_id
+  subnet_id              = var.subnet_id
 
   tags = {
     Name = "ExampleAppServerInstance"
@@ -25,10 +25,10 @@ resource "aws_instance" "app_server" {
 }
 
 resource "aws_instance" "app1_server" {
-  ami           = var.ami
-  instance_type = var.instance_type
+  ami                    = var.ami
+  instance_type          = var.instance_type
   vpc_security_group_ids = [var.vpc_security_group_id]
-  subnet_id = var.subnet_id
+  subnet_id              = var.subnet_id
 
   tags = {
     Name = "ExampleAppServerInstance"
@@ -36,16 +36,16 @@ resource "aws_instance" "app1_server" {
 }
 
 resource "aws_s3_bucket" "mybucket" {
-    bucket = var.bucket_name
-    tags = {
-    Name       = "My bucket"
+  bucket = var.bucket_name
+  tags = {
+    Name        = "My bucket"
     Environment = "Dev"
-    }
+  }
 }
 
 resource "aws_s3_bucket_versioning" "versioning_example1" {
-    bucket = aws_s3_bucket.mybucket.id
-    versioning_configuration {
-        status = "Enabled"
-    }
+  bucket = aws_s3_bucket.mybucket.id
+  versioning_configuration {
+    status = "Enabled"
+  }
 }
